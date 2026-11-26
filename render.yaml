@@ -1,0 +1,27 @@
+services:
+  - type: worker
+    name: edgelink-seo-audit-worker
+    runtime: docker
+    dockerfilePath: ./Dockerfile.worker
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: USE_MOCKS
+        value: "true"
+      - key: USE_MOCK_CLAUDE
+        value: "false"
+      - key: CLAUDE_MODEL
+        value: claude-sonnet-4-6
+      - key: WORKER_CONCURRENCY
+        value: "2"
+      - key: REPORTS_DIR
+        value: /tmp/reports
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
